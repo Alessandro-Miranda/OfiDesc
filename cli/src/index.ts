@@ -1,29 +1,16 @@
-import { stdin as input, stdout as output } from 'process';
-import * as readline from 'readline';
+import { fork } from 'child_process';
 
-const rl = readline.createInterface({
-    input,
-    output
+const ENV = process.env.NODE_ENV?.trimEnd().toLowerCase();
+const optionsMenu = fork(`${__dirname}/utils/OptionsChoiceMenu${ENV === 'prod' ? '.js' : '.ts'}`, ['normal']);
+
+optionsMenu.send({
+    initProcess: true,
 });
 
-input.setRawMode(true);
-input.resume();
-input.on('keypress', (event, key) => {
-    console.log('pressionou');
-    input.setRawMode(false);
-    input.destroy();
-})
+optionsMenu.on('message', (data) => {
+    console.log(data);
+});
 
-
-// const questions = [
-//     {
-//         id: 1,
-//         question: 'Você deseja salvar o código gerado em um arquivo do tipo CSV? (S/N)',
-//         response: false,
-//     },
-//     {
-//         id: 2,
-//         question: 'Você deseja salvar o código gerado em um arquivo '
-//     }
-// ]
-
+optionsMenu.on('exit', () => {
+    console.log('saiu');
+});
