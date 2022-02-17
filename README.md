@@ -1,5 +1,7 @@
 # OfiDesc
 
+**status**: Em construção :construction:
+
 ## Descrição
 
 ## Features
