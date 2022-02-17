@@ -1,14 +1,19 @@
-import { beforeEach, describe, jest, test } from "@jest/globals";
-import { OptionsChoiceMenu } from "../src/utils/OptionsChoiceMenu";
+import { beforeEach, describe, jest, test } from '@jest/globals';
+import OptionsChoiceMenu from '../src/utils/OptionsChoiceMenu';
 
-describe("Tests the options choice menu", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+jest.mock('process');
+jest.mock('readline');
 
-  const menu = new OptionsChoiceMenu();
+describe('Tests the options choice menu', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
 
-  test.todo("Should return true if the options were successfully chosen");
+    const menu = new OptionsChoiceMenu();
 
-  test.todo("Should return false if the options don't has successfully chosen");
+    test('Should return true if the options were successfully chosen', () => {
+        menu.showMenu();
+    });
+
+    test.todo("Should return false if the options don't has successfully chosen");
 });
