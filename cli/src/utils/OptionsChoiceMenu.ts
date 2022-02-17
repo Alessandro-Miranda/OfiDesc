@@ -1,13 +1,16 @@
 import { stdin as input, stdout as output } from 'process';
 import * as readline from 'readline';
+import MenuOptions from '../types/menu';
 
 /**
  * @classdesc Show the menu with file extension options
  */
 class OptionsChoiceMenu {
-    private selectedAwnser = 1;
+    private selectedAwnserIndex = 1;
 
-    private options = ['CSV + HTML', 'CSV', 'HTML'];
+    private chosenAwnser = MenuOptions.CSVHTML;
+
+    private optionsLength = 0;
 
     /**
      * @constructor init the listener to keyboard events
@@ -22,16 +25,20 @@ class OptionsChoiceMenu {
      * @description write menu options in console
      */
     showMenu(): void {
-        output.write(OptionsChoiceMenu.ansiEraseLines(this.options.length));
+        const MENU_KEYS = Object.keys(MenuOptions);
+        this.optionsLength = MENU_KEYS.length;
+
+        output.write(OptionsChoiceMenu.ansiEraseLines(MENU_KEYS.length));
 
         output.write('Escolha abaixo o tipo de arquivo que você deseja gerar (use as setas do teclado para navegar entre as opções):\n');
 
         readline.emitKeypressEvents(input);
 
-        this.options.forEach((option, index) => {
-            const text = this.createText(option, index + 1);
-            const optionText = (index + 1) === this.options.length ? text : `${text}\n`;
-            output.write(optionText);
+        MENU_KEYS.forEach((option, index) => {
+            const OPTION_KEY = option as keyof typeof MenuOptions;
+            const TEXT = this.createText(MenuOptions[OPTION_KEY], index + 1);
+            const OPTION_TEXT = (index + 1) === this.optionsLength ? TEXT : `${TEXT}\n`;
+            output.write(OPTION_TEXT);
         });
     }
 
@@ -42,7 +49,7 @@ class OptionsChoiceMenu {
      * @returns Formated text with ASCII characters
      */
     private createText(text: string, index: number): string {
-        return index === this.selectedAwnser ? `\x1b[34m\x1b[4m> ${text}\x1b[0m` : `  ${text}\x1b[0m`;
+        return index === this.selectedAwnserIndex ? `\x1b[34m\x1b[4m> ${text}\x1b[0m` : `  ${text}\x1b[0m`;
     }
 
     /**
@@ -54,12 +61,20 @@ class OptionsChoiceMenu {
     private setResponse(event: KeyboardEvent, key: any): void {
         if (!key) return;
 
-        if (key.name === 'up' && this.selectedAwnser > 1) {
-            this.selectedAwnser -= 1;
+        const OPTIONS_KEYS = Object.keys(MenuOptions);
+
+        if (key.name === 'up' && this.selectedAwnserIndex > 1) {
+            this.selectedAwnserIndex -= 1;
+
+            const OPTION = OPTIONS_KEYS[this.selectedAwnserIndex - 1] as keyof typeof MenuOptions;
+            this.chosenAwnser = MenuOptions[OPTION];
         }
 
-        if (key.name === 'down' && this.selectedAwnser < this.options.length) {
-            this.selectedAwnser += 1;
+        if (key.name === 'down' && this.selectedAwnserIndex < this.optionsLength) {
+            this.selectedAwnserIndex += 1;
+
+            const OPTION = OPTIONS_KEYS[this.selectedAwnserIndex - 1] as keyof typeof MenuOptions;
+            this.chosenAwnser = MenuOptions[OPTION];
         }
 
         if (key.name === 'escape' || (key.name === 'c' && key.ctrl)) {
@@ -69,7 +84,7 @@ class OptionsChoiceMenu {
         if (key.name === 'return') {
             // @ts-ignore
             process.send({
-                selectedAwnser: this.selectedAwnser,
+                selectedAwnser: this.chosenAwnser,
             });
             OptionsChoiceMenu.endProcess();
         }
@@ -85,18 +100,18 @@ class OptionsChoiceMenu {
     private static ansiEraseLines(count: number) {
         // adapted from sindresorhus ansi-escape module
         const ESC = '\u001B[';
-        const eraseLine = `${ESC}2K`;
+        const ERASE_LINE = `${ESC}2K`;
         const cursorUp = (c = 1) => `${ESC + c}A`;
-        const cursorLeft = `${ESC}G`;
+        const CURSOR_LEFT = `${ESC}G`;
 
         let clear = '';
 
         for (let i = 0; i <= count; i++) {
-            clear += eraseLine + (i <= count - 1 ? cursorUp() : '');
+            clear += ERASE_LINE + (i <= count - 1 ? cursorUp() : '');
         }
 
         if (count) {
-            clear += cursorLeft;
+            clear += CURSOR_LEFT;
         }
 
         return clear;
