@@ -134,3 +134,5 @@ process.on('message', (data: { initProcess: boolean }) => {
         menu.showMenu();
     }
 });
+
+export default OptionsChoiceMenu;
