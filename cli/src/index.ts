@@ -1,5 +1,5 @@
 import { fork } from 'child_process';
-import Description from './Description';
+import Description from './description';
 
 function main(option: string) {
     const description = new Description(option);
