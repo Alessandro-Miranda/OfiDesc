@@ -14,6 +14,9 @@
 
 ## Tecnologias e Ferramentas
 
+- [Node.js](https://nodejs.org/en/);
+- [TypeScript](https://www.typescriptlang.org/);
+
 ## Autores
 
 ## Licença
