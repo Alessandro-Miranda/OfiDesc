@@ -1,6 +1,7 @@
 export interface IDescription {
     getArgs: () => void;
-    generateHTML: () => string;
-    generateCSV: () => string;
-    saveFile: () => void;
+    generateHTMLFile: () => void;
+    generateCSVFile: () => void;
+    saveFile: () => Promise<void>;
+    init: () => void;
 }
