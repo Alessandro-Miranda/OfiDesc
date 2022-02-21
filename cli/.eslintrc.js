@@ -29,7 +29,7 @@ module.exports = {
         'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
         'no-unused-vars': 'off',
         'no-shadow': 'off',
-        '@typescript-eslint/no-unused-vars': 'error',
+        '@typescript-eslint/no-unused-vars': ['error', { args: 'after-used' }],
         '@typescript-eslint/no-shadow': 'error',
         'object-curly-newline': 'off',
     },
