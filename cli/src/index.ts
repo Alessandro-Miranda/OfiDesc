@@ -1,8 +1,13 @@
 import { fork } from 'child_process';
 import Description from './description';
 
-function main(option: string) {
+async function main(option: string) {
     const description = new Description(option);
+    console.clear();
+    console.info('Preparando local para salvar os arquivos');
+    description.getArgs();
+    console.info('Iniciando a geração dos arquivos. Por favor, aguarde um momento');
+    await description.init();
 }
 
 const ENV = process.env.NODE_ENV?.trimEnd().toLowerCase();
@@ -19,5 +24,7 @@ optionsMenu.on('message', (data: { selectedAwnser: string }) => {
 });
 
 optionsMenu.on('exit', () => {
-    main(selectedOption);
+    if (selectedOption) {
+        main(selectedOption);
+    }
 });
