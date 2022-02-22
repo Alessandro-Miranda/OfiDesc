@@ -21,7 +21,7 @@ if not defined FOUND (
 
     curl -O https://nodejs.org/dist/v16.14.0/node-v16.14.0-x64.msi --ssl-no-revoke
 
-    echo Prossiga a instalação do - node sem fechar esta tela - e, após finalizar, volte para continuar a inicialização da pasta de geração de descrições.
+    echo Prossiga a instalação do node - sem fechar esta tela - e, após finalizar, volte para continuar a inicialização da pasta de geração de descrições.
 
     start %CurrDirName%node-v16.14.0-x64.msi
 
