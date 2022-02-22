@@ -24,11 +24,6 @@ Para rodar o script em desenvolvimento, basta executar `npm run dev` e, para ger
 
 ### Testes
 
-## Tecnologias e Ferramentas
-
-- [Node.js](https://nodejs.org/en/);
-- [TypeScript](https://www.typescriptlang.org/);
-
 ## Autores
 
 - [Alessandro Lima de Miranda](https://github.com/Alessandro-Miranda) - Desenvolvimento CLI
