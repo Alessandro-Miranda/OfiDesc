@@ -99,11 +99,12 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "exclude": [
-    "node_modules",
+    "node_modules/",
     "__tests__",
     "__mocks__",
     "coverage",
-    "src/interfaces",
-    "src/types"
+    "src/interfaces/*.ts*",
+    "src/types/*.ts",
+    "jest.config.ts"
   ]
 }
