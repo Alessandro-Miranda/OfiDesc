@@ -71,7 +71,15 @@ class Description implements IDescription {
 
             await this.saveFile();
 
-            console.info('Descrições salvas nas pasta "descricoes"\n');
+            let output;
+
+            this.args.forEach(([key, value]) => {
+                if (key === 'output') {
+                    output = value;
+                }
+            });
+
+            console.info(`Descrições salvas nas pasta ${output}\n`);
         } catch (err) {
             console.error(`${err}\n`);
             console.log('Finalizando o process\n');
