@@ -103,8 +103,6 @@
     "__tests__",
     "__mocks__",
     "coverage",
-    "src/interfaces/",
-    "src/types/",
     "jest.config.ts"
   ]
 }
