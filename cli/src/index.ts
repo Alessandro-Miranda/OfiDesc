@@ -10,6 +10,8 @@ async function main(option: string) {
     await description.init();
 }
 
+console.clear();
+
 const ENV = process.env.NODE_ENV?.trimEnd().toLowerCase();
 const optionsMenu = fork(`${__dirname}/utils/OptionsChoiceMenu${ENV === 'prod' ? '.js' : '.ts'}`, ['normal']);
 
