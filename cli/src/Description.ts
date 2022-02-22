@@ -29,7 +29,7 @@ class Description implements IDescription {
         this.selectedOption = option;
     }
 
-    public getArgs() {
+    public getArgs(): void {
         this.args = process.argv
             .filter((arg) => /^--/.test(arg))
             .map((arg) => arg.replace(/^--/, '').split('='))
@@ -87,7 +87,7 @@ class Description implements IDescription {
         }
     }
 
-    public generateCSVFile() {
+    public generateCSVFile(): void {
         console.info('Gerando arquivo CSV...\n');
 
         const lines = this.files.map(({ extension, fileData, fileName }) => {
@@ -103,7 +103,7 @@ class Description implements IDescription {
         });
     }
 
-    public generateHTMLFile() {
+    public generateHTMLFile(): void {
         console.info('Gerando arquivo HTML...\n');
 
         this.files.forEach(({ extension, fileData, fileName }) => {
@@ -119,7 +119,7 @@ class Description implements IDescription {
         });
     }
 
-    private static createJson(fileExtension: string, data: string) {
+    private static createJson(fileExtension: string, data: string): DescriptionData {
         let json = {} as DescriptionData;
 
         if (fileExtension === 'json') {
@@ -163,7 +163,7 @@ class Description implements IDescription {
         });
     }
 
-    private getEntryFolder() {
+    private getEntryFolder(): string {
         let entry = '';
 
         this.args.forEach(([key, value]) => {
