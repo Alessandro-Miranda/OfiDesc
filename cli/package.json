@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --build",
-    "dev": "ts-node ./src/index.ts --dirname=%USERPROFILE%\\description-generator\\cli --entry=%USERPROFILE%\\description-generator\\cli\\skus --output=%USERPROFILE% \\description-generator\\cli\\codigo-gerado",
+    "dev": "ts-node ./src/index.ts --dirname=%USERPROFILE%\\description-generator\\cli --entry=%USERPROFILE%\\description-generator\\cli\\skus --output=codigo-gerado",
     "test": "npx jest",
     "test:cov": "npx jest --config jest.config.ts --coverage",
     "test:watch": "npx jest --config jest.config.ts --watchAll"
