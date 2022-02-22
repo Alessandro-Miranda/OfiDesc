@@ -13,7 +13,7 @@ async function main(option: string) {
 console.clear();
 
 const ENV = process.env.NODE_ENV?.trimEnd().toLowerCase();
-const optionsMenu = fork(`${__dirname}/utils/OptionsChoiceMenu${ENV === 'prod' ? '.js' : '.ts'}`, ['normal']);
+const optionsMenu = fork(`${__dirname}/utils/optionsChoiceMenu${ENV === 'prod' ? '.js' : '.ts'}`, ['normal']);
 
 let selectedOption = '';
 
