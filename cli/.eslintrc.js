@@ -32,6 +32,7 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': ['error', { args: 'after-used' }],
         '@typescript-eslint/no-shadow': 'error',
         'object-curly-newline': 'off',
+        'no-console': 'off',
     },
     ignorePatterns: ['__mocks__', '*.config.*'],
 };
