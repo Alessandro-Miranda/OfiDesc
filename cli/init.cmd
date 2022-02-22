@@ -5,6 +5,7 @@ for %%I in (.) do set CurrDirName=%~dp0
 echo "liberando e iniciando a pasta para à geração dos arquivos"
 
 attrib -s -h -a /s /d  %CurrDirName%description-generator.cmd
+attrib -s -h -a /s /d  %CurrDirName%exemplo-arquivo-json
 
 echo "Criando pastas de entrada e saída do conteúdo"
 
