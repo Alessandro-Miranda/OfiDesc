@@ -15,7 +15,7 @@ type FileArray = {
 class Description implements IDescription {
     private selectedOption: string;
 
-    private allowedOptions = ['dirname', 'userProfile', 'entry'];
+    private allowedOptions = ['dirname', 'userProfile', 'entry', 'output'];
 
     private allowedExtension = ['json', 'doc', 'docx'];
 
@@ -195,15 +195,20 @@ class Description implements IDescription {
         return new Promise((resolve, reject) => {
             this.filesToSave.forEach(({ extension, fileData, fileName }, index) => {
                 let dir = '';
+                let outputDir = '';
 
                 this.args.forEach(([key, value]) => {
                     if (key === 'dirname') {
                         dir = value.replace(/\\$/, '');
                     }
+
+                    if (key === 'output') {
+                        outputDir = value;
+                    }
                 });
 
                 const subDir = extension === 'csv' ? 'csv' : 'html';
-                const basedirToSaveFiles = `${dir}\\descricoes\\${subDir}`;
+                const basedirToSaveFiles = `${dir}\\${outputDir}\\${subDir}`;
 
                 if (!existsSync(basedirToSaveFiles)) {
                     mkdirSync(basedirToSaveFiles, { recursive: true });
