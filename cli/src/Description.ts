@@ -82,15 +82,15 @@ class Description implements IDescription {
     public generateCSVFile() {
         console.info('Gerando arquivo CSV...\n');
 
-        const lines = this.files.map(({ extension, fileData }) => {
+        const lines = this.files.map(({ extension, fileData, fileName }) => {
             const json = Description.createJson(extension, fileData);
 
-            return generateHTML(json);
+            return `${fileName},${minifyHTML(generateHTML(json))}`;
         }).join('\n');
 
         this.filesToSave.push({
             extension: 'csv',
-            fileData: minifyHTML(lines),
+            fileData: `sku,Descrição Longa\n${lines}`,
             fileName: `descriptions-${new Date().getTime()}`,
         });
     }
@@ -132,7 +132,7 @@ class Description implements IDescription {
                     reject(new Error('Erro ao tentar acessar a pasta com os arquivos. Por favor, tente novamente\n'));
                 }
 
-                files.forEach((file) => {
+                files.forEach((file, index) => {
                     readFile(`${entry}\\${file}`, { encoding: 'utf-8' }, (error, data) => {
                         if (error) {
                             reject(new Error(`Erro lendo o arquivo: ${file}\n. ${error}`));
@@ -146,7 +146,9 @@ class Description implements IDescription {
                             fileName: basename(file).replace(/\.\w+$/, ''),
                         });
 
-                        resolve();
+                        if (index === files.length - 1) {
+                            resolve();
+                        }
                     });
                 });
             });
@@ -189,9 +191,9 @@ class Description implements IDescription {
         });
     }
 
-    public async saveFile(): Promise<void> {
+    private async saveFile(): Promise<void> {
         return new Promise((resolve, reject) => {
-            this.filesToSave.forEach(({ extension, fileData, fileName }) => {
+            this.filesToSave.forEach(({ extension, fileData, fileName }, index) => {
                 let dir = '';
 
                 this.args.forEach(([key, value]) => {
@@ -207,14 +209,16 @@ class Description implements IDescription {
                     mkdirSync(basedirToSaveFiles, { recursive: true });
                 }
 
-                writeFile(`${basedirToSaveFiles}\\${fileName}.${extension}`, fileData, { encoding: 'latin1' }, (err) => {
+                writeFile(`${basedirToSaveFiles}\\${fileName}.${extension}`, fileData, { encoding: extension === 'csv' ? 'latin1' : 'utf-8' }, (err) => {
                     if (err) {
                         reject(new Error(`Erro salvando o arquivo ${fileName}`));
                     }
+
+                    if (index === this.filesToSave.length - 1) {
+                        resolve();
+                    }
                 });
             });
-
-            resolve();
         });
     }
 }
