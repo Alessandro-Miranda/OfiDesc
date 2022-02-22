@@ -2,17 +2,17 @@
 
 for %%I in (.) do set CurrDirName=%~dp0
 
-echo "liberando e iniciando a pasta para à geração dos arquivos"
+echo liberando e iniciando a pasta para à geração dos arquivos
 
 attrib -s -h -a /s /d  %CurrDirName%description-generator.cmd
 attrib -s -h -a /s /d  %CurrDirName%exemplo-arquivo-json
 
-echo "Criando pastas de entrada e saída do conteúdo"
+echo Criando pastas de entrada e saída do conteúdo
 
 mkdir skus
 mkdir codigo-gerado
 
-echo "Verificando a instalação do Node.js"
+echo Verificando a instalação do Node.js
 
 for %%X in (node.exe) do (set FOUND=%%~$PATH:X)
 
@@ -30,6 +30,7 @@ if not defined FOUND (
     echo Inicialização da pasta concluída com sucesso!.
 ) else (
     echo Inicialização da pasta concluída com sucesso!.
+    pause
 )
 
 del %CurrDirName%init.cmd
