@@ -7,7 +7,7 @@ for %%I in (.) do set CurrDirName=%~dp0
 
 @REM set Script=%USERPROFILE%\description-generator\dist\index.js
 
-set Script=%CurrDirName%dist\index.js
-set NODE_ENV=prod && node %Script% --dirname=%CurrDirName% --userProfile=%USERPROFILE% --entry=%CurrDirName%skus --output=%CurrDirName%codigo-gerado
+set Script=%CurrDirName%\index.js
+set NODE_ENV=prod && node %Script% --dirname=%CurrDirName% --userProfile=%USERPROFILE% --entry=%CurrDirName%skus --output=codigo-gerado
 
 pause
