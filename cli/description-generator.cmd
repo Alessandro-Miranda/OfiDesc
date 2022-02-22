@@ -1,7 +1,6 @@
 @echo off
 
-@REM Obtém com o nome do arquivo
-for %%I in (.) do set CurrDirName=%~dpnx0
+@REM for %%I in (.) do set CurrDirName=%~dpnx0 // Obtém com o nome do arquivo
 
 @REM Obtém o path de onde o arquivo está sendo executado com barra no final
 for %%I in (.) do set CurrDirName=%~dp0
