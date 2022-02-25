@@ -1,10 +1,10 @@
 # OfiDesc
 
-**status**: Em construção :construction:
-
 ## Descrição
 
 Aplicação simples para gerar automáticamente descrições de produtos com base em arquivos JSON e, futuramente, DOCX. A aplicação permite salvar o código HTML já pré-criado em um arquivo HTML ou em lote dentro de um arquivo CSV.
+
+*Obs.:* Os arquivos batch para inicar a geração das descrições apenas funciona no ambiente windows.
 
 ## Features
 
