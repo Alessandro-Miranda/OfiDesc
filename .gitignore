@@ -6,3 +6,6 @@ dist
 
 # reports
 coverage
+
+# Entry batch
+init.cmd
