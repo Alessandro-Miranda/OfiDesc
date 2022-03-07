@@ -50,7 +50,7 @@ for %%X in (node.exe) do (set HAS_NODE=%%~$PATH:X)
 if not defined HAS_NODE (
     echo Baixando o Node.js. Por favor, aguarde...
 
-    curl -m 600 -O https://nodejs.org/dist/v16.14.0/node-v16.14.0-x64.msi
+    curl --ssl-no-revoke -m 600 -O https://nodejs.org/dist/v16.14.0/node-v16.14.0-x64.msi
 
     echo Iniciando a instalacao...
 
