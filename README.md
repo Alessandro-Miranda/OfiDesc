@@ -22,6 +22,8 @@ Para iniciar o desenvolvimento e modificações da parte CLI, acesse a pasta, vi
 
 Para rodar o script em desenvolvimento, basta executar `npm run dev` e, para gerar o build, `npm run build`
 
+Para realizar o download e criação das pastas de forma automática em qualquer computador diferente, basta criar um arquivo `.cmd` como no arquivo de exemplo `init.example.cmd` e executá-lo.
+
 ### Testes
 
 ## Autores
