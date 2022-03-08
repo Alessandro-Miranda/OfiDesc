@@ -9,8 +9,8 @@ Aplicação simples para gerar automáticamente descrições de produtos com bas
 ## Features
 
 - [x] Geração de arquivo CSV e HTML
-- [x] Geração de arquivo HTML
-- [x] Geração de arquivo CSV
+- [x] Geração de arquivo somente HTML
+- [x] Geração de arquivo somente CSV
 
 ## Pré-requisitos
 
