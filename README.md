@@ -24,8 +24,6 @@ Para rodar o script em desenvolvimento, basta executar `npm run dev` e, para ger
 
 Para realizar o download e criação das pastas de forma automática em qualquer computador diferente, basta criar um arquivo `.cmd` como no arquivo de exemplo `init.example.cmd` e executá-lo.
 
-### Testes
-
 ## Autores
 
 - [Alessandro Lima de Miranda](https://github.com/Alessandro-Miranda) - Desenvolvimento CLI
