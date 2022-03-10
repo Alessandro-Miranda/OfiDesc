@@ -215,7 +215,7 @@ class Description implements IDescription {
                     }
                 });
 
-                const subDir = extension === 'csv' ? 'csv' : 'html';
+                const subDir = extension;
                 const basedirToSaveFiles = `${dir}\\${outputDir}\\${subDir}`;
 
                 if (!existsSync(basedirToSaveFiles)) {
